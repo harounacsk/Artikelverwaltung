@@ -1,0 +1,34 @@
+#asd{
+	margin-top:20px; 
+	width:calc(40% - 28px);
+	margin: 10px auto;
+	border:4px solid #051e4e;
+	border-radius: 10px;
+}
+#divform{
+	background-color: #f57d26;
+	color: white;
+	border: 2px solid #051e4e;
+}
+
+button[type=submit] {
+	background-color: #051e4e;
+	color: white;
+	margin: 2px auto;
+}
+
+.rot{
+	color :red;
+}
+
+
+@media screen and (max-width: 748px) {
+  #asd{
+  	width: calc(100% - 20px);
+  	margin: 10px auto;
+  }
+  #divform{
+  	padding: 10px;
+  
+  }
+}
