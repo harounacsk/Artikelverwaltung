@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS azm;
+DROP DATABASE IF EXISTS azm_test;
 /*
 CREATE USER 'hrn'@'localhost' IDENTIFIED BY 
 'my_pass';
@@ -6,10 +6,10 @@ GRANT ALL PRIVILEGES ON azm.* TO
 'hrn'@'localhost';
 */
 /*user, lagertyp, lieferanten, arikel, artikel_lieferanten, eingang*/
-CREATE DATABASE azm
+CREATE DATABASE azm_test
   CHARACTER SET utf8
   COLLATE utf8_general_ci;
-use azm;
+use azm_test;
 CREATE TABLE user(
 user_id int(11) NOT NULL AUTO_INCREMENT,
 name VARCHAR(50) NOT NULL CHECK (name <> ''),
