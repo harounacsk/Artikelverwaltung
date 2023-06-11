@@ -5,19 +5,28 @@ function postData() {
   let supplierName = document.getElementById("name").value;
 
   request.addEventListener('load', function (event) {
-    let msg = "Ein Fehler ist aufgetreten.";
+    let msg,icon = "";
     let text = JSON.parse(request.responseText);
-    
-    if ("added" == text.msg) 
-      msg = "Der Lieferant: " + supplierName +" wurde hinzugefügt.";
 
-    if("updated" == text.msg)
-      msg="Die Daten des Lieferanten wurden geändert"
     if (request.status >= 200 && request.status < 300) {
-      Swal.fire({ icon: 'success', title: '', text: msg, showConfirmButton: true });
+      switch (text.msg) {
+        case "added":
+          msg = "Der Lieferant: " + supplierName + " wurde hinzugefügt.";
+          icon="success";
+          break;
+        case "updated":
+          msg = "Die Daten des Lieferanten wurden geändert";
+          icon="success";
+          break;
+        default:
+          msg="Ein Fehler ist aufgetreten.";
+          icon="error";
+          break;
+      }
+      Swal.fire({ icon: icon, title: '', text: msg, showConfirmButton: true });
       resetForm();
     }
-    else 
+    else
       console.warn(request.statusText, request.responseText);
 
   });

@@ -2,22 +2,31 @@ function postData() {
   let form = document.querySelector('form');
   let data = new FormData(form);
   let request = new XMLHttpRequest();
-  let msg;
+  let msg,icon;
   request.addEventListener('load', function (event) {
     let text = JSON.parse(request.responseText);
-    
-    if("added" == text.msg)
-      msg = "Ein neuer Preis ist hinzugefügt";
 
-    if("updated" == text.msg)
-      msg = "Der Preis wurde geändert.";
+    switch (text.msg) {
+      case "added":
+        msg = "Ein neuer Preis ist hinzugefügt";
+        icon="succes";
+        break;
+      case "updated":
+        msg = "Der Preis wurde geändert.";
+        icon="succes";
+        break;    
+      default:
+        msg = "Ein Fehler ist aufgetreten.";
+        icon="error";
+        break;
+    }
     
     if (request.status >= 200 && request.status < 300) {
-      Swal.fire({ icon: 'success', title: '', text: msg, showConfirmButton: true });
+      Swal.fire({ icon: icon, title: "", text: msg, showConfirmButton: true });
       resetForm();
     }
     else 
-      console.warn(request.statusText, request.responseText);
+      console.warn(request.statusText, request.responseText.msg);
   });
   request.open("POST", "../php/save/article_supplier.php");
   request.send(data);

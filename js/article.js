@@ -6,20 +6,28 @@ function postData() {
 
   request.addEventListener('load', function (event) {
     let text = JSON.parse(request.responseText);
-    let msg;
-    
-    if("added" == text.msg)
-      msg = "Der Artikel "+ articleName+ "  wurde hinzugefügt";
-    else if("updated" == text.msg)
-      msg="Die Daten der Artikels wurden geändert";
-    else
-      msg=" Ein Fehler ist aufgetreten";
-    
+    let msg, icon;
+
+    switch (text.msg) {
+      case "added":
+        msg = "Der Artikel " + articleName + "  wurde hinzugefügt";
+        icon = "success";
+        break;
+      case "updated":
+        msg = "Die Daten der Artikels wurden geändert";
+        icon = "success";
+        break;
+      default:
+        msg = " Ein Fehler ist aufgetreten";
+        icon = "error";
+        break;
+    }
+
     if (request.status >= 200 && request.status < 300) {
-      Swal.fire({ icon: 'success', title: '', text: msg, showConfirmButton: true });
+      Swal.fire({ icon: icon, title: '', text: msg, showConfirmButton: true });
       resetForm();
     }
-    else 
+    else
       console.warn(request.statusText, request.responseText);
   });
   request.open("POST", "../php/save/article.php");

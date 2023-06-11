@@ -7,20 +7,20 @@ function postData() {
 
 
   request.addEventListener('load', function (event) {
-    let  msg="";
+    let  msg,icon;
     let text = JSON.parse(request.responseText);
 
     if (request.status >= 200 && request.status < 300) {
-      if("success" == text.msg)
+      
+      if("success" == text.msg){
         msg="Eine Menge von: " + quantity + " des Artikels:" + articleName +" wurde eingetragen.";
-
-      if ("error" == text.msg) {
-        msg = "Es ist ein Fehler aufgetreten"
-        Swal.fire({ icon: 'error', title: '', text: msg, showConfirmButton: true });
+        icon="success";
+      }else{
+        msg = "Es ist ein Fehler aufgetreten";
+        icon ="error";
       }
-      else 
-        Swal.fire({ icon: 'success', title: '', text: msg, showConfirmButton: true });
-  
+
+      Swal.fire({ icon: icon, title: '', text: msg, showConfirmButton: true });
       setTimeout(function () {
         window.location.href = '../vue/ean.php';
       }, 3000
