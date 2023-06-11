@@ -16,25 +16,11 @@ function postData() {
 
       if ("error" == text.msg) {
         msg = "Es ist ein Fehler aufgetreten"
-
-        Swal.fire({
-          icon: 'error',
-          title: '',
-          text: msg,
-          showConfirmButton: true
-        });
-
+        Swal.fire({ icon: 'error', title: '', text: msg, showConfirmButton: true });
       }
-      else {
-        
-        Swal.fire({
-          icon: 'success',
-          title: '',
-          text: msg,
-          showConfirmButton: true
-        });
-        console.log(quantity);
-      }
+      else 
+        Swal.fire({ icon: 'success', title: '', text: msg, showConfirmButton: true });
+  
       setTimeout(function () {
         window.location.href = '../vue/ean.php';
       }, 3000

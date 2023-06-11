@@ -13,17 +13,11 @@ function postData() {
       msg = "Der Preis wurde geändert.";
     
     if (request.status >= 200 && request.status < 300) {
-      Swal.fire({
-        icon: 'success',
-        title: '',
-        text: msg,
-        showConfirmButton: true
-      });
+      Swal.fire({ icon: 'success', title: '', text: msg, showConfirmButton: true });
       resetForm();
     }
-    else {
+    else 
       console.warn(request.statusText, request.responseText);
-    }
   });
   request.open("POST", "../php/save/article_supplier.php");
   request.send(data);

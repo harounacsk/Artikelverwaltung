@@ -1,4 +1,4 @@
-DROP DATABASE azm_test;
+DROP DATABASE IF EXISTS azm;
 /*
 CREATE USER 'hrn'@'localhost' IDENTIFIED BY 
 'my_pass';
@@ -6,10 +6,10 @@ GRANT ALL PRIVILEGES ON azm.* TO
 'hrn'@'localhost';
 */
 /*user, lagertyp, lieferanten, arikel, artikel_lieferanten, eingang*/
-CREATE DATABASE azm_test
+CREATE DATABASE azm
   CHARACTER SET utf8
   COLLATE utf8_general_ci;
-use azm_test;
+use azm;
 CREATE TABLE user(
 user_id int(11) NOT NULL AUTO_INCREMENT,
 name VARCHAR(50) NOT NULL CHECK (name <> ''),
@@ -67,7 +67,9 @@ supplier_id int(11) NOT NULL,
 article_id int(11) NOT NULL,
 price_net float NOT NULL,
 tax float NOT NULL,
-PRIMARY KEY (article_supplier_id)
+PRIMARY KEY (article_supplier_id),
+UNIQUE KEY(article_id,supplier_id)
+
 );
 CREATE TABLE stock (
 stock_id int(11) NOT NULL AUTO_INCREMENT,
