@@ -16,7 +16,7 @@ function postData() {
         icon="succes";
         break;    
       default:
-        msg = "Ein Fehler ist aufgetreten.";
+        msg = "Für jeden Artikel kann der Lieferant höchstens einen Preis anbieten.";
         icon="error";
         break;
     }
