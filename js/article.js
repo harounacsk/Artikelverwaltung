@@ -17,6 +17,10 @@ function postData() {
         msg = "Die Daten der Artikels wurden geändert";
         icon = "success";
         break;
+      case "error_duplicata":
+        msg = "Der Artikelname darf höchstens einmal vorhanden sein.";
+        icon = "error";
+          break;
       default:
         msg = " Ein Fehler ist aufgetreten";
         icon = "error";
