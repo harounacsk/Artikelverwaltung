@@ -15,8 +15,12 @@ function postData() {
         msg = "Der Preis wurde geändert.";
         icon="succes";
         break;    
-      default:
+      case "error_duplicata":
         msg = "Für jeden Artikel kann der Lieferant höchstens einen Preis anbieten.";
+        icon="error";
+        break;
+      default:
+        msg = "Ein Fehler ist aufgetreten.";
         icon="error";
         break;
     }

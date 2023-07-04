@@ -64,4 +64,8 @@ class Database
 		$this->connexion->close();
 	}
 
+
+	public function getDbError(){
+		return $this->connexion->errno;
+	}
 }

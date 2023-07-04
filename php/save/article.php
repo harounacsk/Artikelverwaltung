@@ -3,6 +3,7 @@
 require_once "../controller/Database.php";
 require_once "../model/Article.php";
 require_once "../controller/ArticleController.php";
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 
 if (!empty($_POST)) {
@@ -19,15 +20,22 @@ if (!empty($_POST)) {
 		try {
 			$articleController->update($article, trim($_POST["article_id"]));
 			$msg ="updated";
-		} catch (Exception $e) {
-			$msg = "error_duplicata";
+		} catch (mysqli_sql_exception $e) {
+			if($e->getCode()==1062)
+				$msg = "error_duplicata";
+			else
+				$msg = "error";
 		}
 	} else {
 		try {
 			$articleController->insert($article);
 			$msg = "added";
-		} catch (Exception $e) {
-			$msg = "error_duplicata";
+		} catch (mysqli_sql_exception $e) {
+			if($e->getCode()==1062)
+				$msg = "error_duplicata";
+			else
+				$msg = "error";
+
 		}
 	}
 	echo json_encode(["msg"=>$msg]);
